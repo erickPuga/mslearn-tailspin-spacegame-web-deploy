@@ -1,0 +1,5 @@
+parameters:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: 'Deploy'

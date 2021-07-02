@@ -29,26 +29,28 @@ stages:
     - template: steps/publish.yml
       parameters:
         buildConfiguration: 'Release'
-
-- stage: 'Deploy'
-  displayName: 'Deploy the web application'
-  dependsOn: Build
-  jobs:
-  - deployment: Deploy
-    pool:
-      vmImage: 'ubuntu-20.04'
-    environment: dev
-    variables:
-    - group: Release
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - download: current
-            artifact: drop
-          - task: AzureWebApp@1
-            displayName: 'Azure App Service Deploy: website'
-            inputs:
-              azureSubscription: 'Resource Manager - Tailspin - Space Game'
-              appName: '$(WebAppName)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+- template: stages/dev-deploy.yml
+  parameters:
+    env: dev
+#- stage: 'Deploy'
+#  displayName: 'Deploy the web application'
+#  dependsOn: Build
+#  jobs:
+#  - deployment: Deploy
+#    pool:
+ #     vmImage: 'ubuntu-20.04'
+  #  environment: dev
+   # variables:
+#    - group: Release
+#    strategy:
+#      runOnce:
+#        deploy:
+#          steps:
+#          - download: current
+#            artifact: drop
+#          - task: AzureWebApp@1
+#            displayName: 'Azure App Service Deploy: website'
+#            inputs:
+#              azureSubscription: 'Resource Manager - Tailspin - Space Game'
+#              appName: '$(WebAppName)'
+              #package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
