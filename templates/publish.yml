@@ -10,3 +10,6 @@ steps:
     publishWebProjects: false
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.buildConfiguration }}'
     zipAfterPublish: true
+
+- publish: '$(Build.ArtifactStagingDirectory)'
+  artifact: drop
