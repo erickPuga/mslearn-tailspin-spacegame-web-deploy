@@ -24,6 +24,6 @@ stages:
 - template: stages/deploy.yml
   parameters:
     env: staging
-    DependsOn: Dev
+    DependsOn: Test
     appName: '$(WebAppNameStaging)'
-    stageName: Test
+    stageName: Staging
