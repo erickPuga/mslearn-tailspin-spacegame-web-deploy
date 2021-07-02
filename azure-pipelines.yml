@@ -20,7 +20,7 @@ stages:
       dotnetSdkVersion: '5.x'
 
     steps:
-    - template: template/pre-build.yml
+    - template: templates/pre-build.yml
         
     - template: templates/build.yml
       parameters:
