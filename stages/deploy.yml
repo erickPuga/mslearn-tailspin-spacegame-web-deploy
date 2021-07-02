@@ -5,8 +5,6 @@ parameters:
   appName: ''
   stageName: ''
 
-
-
 stages:
 - stage: ${{ parameters.stageName }}
   displayName: 'Deploy to the ${{ parameters.env }} environment'

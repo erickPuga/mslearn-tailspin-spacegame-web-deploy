@@ -7,14 +7,14 @@ variables:
 stages:
 - template: stages/build-stg.yml
 
-- template: stages/dev-deploy.yml
+- template: stages/deploy.yml
   parameters:
     env: dev
     DependsOn: Build
     appName: '$(WebAppNameDev)'
     stageName: Dev
 
-- template: stages/dev-deploy.yml
+- template: stages/deploy.yml
   parameters:
     env: test
     DependsOn: Dev
