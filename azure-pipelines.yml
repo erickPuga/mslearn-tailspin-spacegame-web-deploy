@@ -20,3 +20,10 @@ stages:
     DependsOn: Dev
     appName: '$(WebAppNameTest)'
     stageName: Test
+
+- template: stages/deploy.yml
+  parameters:
+    env: staging
+    DependsOn: Dev
+    appName: '$(WebAppNameStaging)'
+    stageName: Test
