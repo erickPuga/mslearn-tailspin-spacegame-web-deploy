@@ -11,3 +11,4 @@ stages:
   parameters:
     env: dev
     DependsOn: Build
+    appName: '$(WebAppNameDev)'
