@@ -12,9 +12,11 @@ stages:
     env: dev
     DependsOn: Build
     appName: '$(WebAppNameDev)'
+    stageName: Dev
 
 - template: stages/dev-deploy.yml
   parameters:
     env: test
     DependsOn: Dev
     appName: '$(WebAppNameTest)'
+    stageName: Test

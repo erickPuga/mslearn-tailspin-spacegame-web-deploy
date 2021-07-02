@@ -3,11 +3,12 @@ parameters:
   env: ''
   DependsOn: []
   appName: ''
+  stageName: ''
 
 
 
 stages:
-- stage: 'Dev'
+- stage: ${{ parameters.stageName }}
   displayName: 'Deploy to the ${{ parameters.env }} environment'
   jobs:
   - deployment: Deploy
