@@ -32,6 +32,7 @@ stages:
 - template: stages/dev-deploy.yml
   parameters:
     env: dev
+     
 #- stage: 'Deploy'
 #  displayName: 'Deploy the web application'
 #  dependsOn: Build
