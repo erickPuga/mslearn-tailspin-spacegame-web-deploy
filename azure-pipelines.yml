@@ -15,10 +15,6 @@ stages:
       demands:
       - npm
 
-    variables:
-      wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-      dotnetSdkVersion: '5.x'
-
     steps:
     - template: steps/pre-build.yml
         
@@ -29,6 +25,8 @@ stages:
     - template: steps/publish.yml
       parameters:
         buildConfiguration: 'Release'
+
 - template: stages/dev-deploy.yml
   parameters:
     env: dev
+    DependsOn: Build
