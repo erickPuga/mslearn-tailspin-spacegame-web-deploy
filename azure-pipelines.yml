@@ -1,29 +1,9 @@
 trigger:
 - '*'
 
-<<<<<<< HEAD
-pool:
-  vmImage: 'ubuntu-20.04'
-  demands:
-  - npm
-
-variables:
-  buildConfiguration: 'Release'
-  wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '5.x'
-
-<<<<<<< HEAD
-steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET SDK $(dotnetSdkVersion)'
-  inputs:
-    version: '$(dotnetSdkVersion)'
-=======
-=======
 variables:
   buildConfiguration: 'Release'
 
->>>>>>> old-state
 stages:
 - stage: 'Build'
   displayName: 'Build the web application'
@@ -38,10 +18,6 @@ stages:
     variables:
       wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
       dotnetSdkVersion: '3.1.300'
-<<<<<<< HEAD
->>>>>>> f7fae79 (Add a build stage to the pipeline)
-=======
->>>>>>> old-state
 
     steps:
     - task: UseDotNet@2
@@ -87,9 +63,6 @@ stages:
         zipAfterPublish: true
 
     - publish: '$(Build.ArtifactStagingDirectory)'
-<<<<<<< HEAD
-      artifact: drop
-=======
       artifact: drop
       
 - stage: 'Deploy'
@@ -114,4 +87,3 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
->>>>>>> old-state
