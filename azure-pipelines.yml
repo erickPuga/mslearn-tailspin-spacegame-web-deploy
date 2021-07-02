@@ -1,6 +1,7 @@
 trigger:
 - '*'
 
+<<<<<<< HEAD
 pool:
   vmImage: 'ubuntu-20.04'
   demands:
@@ -18,6 +19,11 @@ steps:
   inputs:
     version: '$(dotnetSdkVersion)'
 =======
+=======
+variables:
+  buildConfiguration: 'Release'
+
+>>>>>>> old-state
 stages:
 - stage: 'Build'
   displayName: 'Build the web application'
@@ -32,7 +38,10 @@ stages:
     variables:
       wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
       dotnetSdkVersion: '3.1.300'
+<<<<<<< HEAD
 >>>>>>> f7fae79 (Add a build stage to the pipeline)
+=======
+>>>>>>> old-state
 
     steps:
     - task: UseDotNet@2
@@ -78,4 +87,31 @@ stages:
         zipAfterPublish: true
 
     - publish: '$(Build.ArtifactStagingDirectory)'
+<<<<<<< HEAD
       artifact: drop
+=======
+      artifact: drop
+      
+- stage: 'Deploy'
+  displayName: 'Deploy the web application'
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    pool:
+      vmImage: 'ubuntu-18.04'
+    environment: dev
+    variables:
+    - group: Release
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: drop
+          - task: AzureWebApp@1
+            displayName: 'Azure App Service Deploy: website'
+            inputs:
+              azureSubscription: 'Resource Manager - Tailspin - Space Game'
+              appName: '$(WebAppName)'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+>>>>>>> old-state
